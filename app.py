@@ -7,11 +7,11 @@ def index():
 
 @app.route('/developer-tools', strict_slashes=False) # matches /developer and /developer/
 def developer():
-    return 'main app: /developer'
+    return 'main app: /developer-tools'
 
 @app.route('/developer-tools/sub/path', strict_slashes=False) # matches with trailing /
 def developer_sub_path():
-    return 'main app: /developer/sub/path'
+    return 'main app: /developer-tools/sub/path'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
