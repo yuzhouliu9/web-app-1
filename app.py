@@ -5,13 +5,21 @@ app = Flask(__name__)
 def index():
     return 'main app: /'
 
-@app.route('/developer-tools', strict_slashes=False) # matches /developer and /developer/
+@app.route('/developer-another-app', strict_slashes=False) # matches with trailing /
 def developer():
-    return 'main app: /developer-tools'
+    return 'another app: /developer-another-app'
 
-@app.route('/developer-tools/sub/path', strict_slashes=False) # matches with trailing /
+@app.route('/developer-another-app/sub/path', strict_slashes=False)
 def developer_sub_path():
-    return 'main app: /developer-tools/sub/path'
+    return 'another app: /developer-another-app/sub/path'
+
+@app.route('/developer/another-app', strict_slashes=False)
+def developer_sub_path():
+    return 'another app: /developer/another-app'
+
+@app.route('/developer/another-app/sub/path', strict_slashes=False)
+def developer_sub_path():
+    return 'another app: /developer/another-app/sub/path'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
