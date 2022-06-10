@@ -25,7 +25,7 @@ steps:
     event:
     - push
 
-- name: deploy-staging
+- name: deploy-test
   image: quay.io/mongodb/drone-helm:v3
   settings:
     chart: mongodb/web-app
@@ -33,10 +33,10 @@ steps:
     add_repos: [mongodb=https://10gen.github.io/helm-charts]
     namespace: devops
     release: yuzhou-test-app-1
-    values: image.tag=git-${DRONE_COMMIT_SHA:0:7},image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devops/${DRONE_REPO_NAME},ingress.enabled=true,ingress.hosts[0]=yuzhou-test-app-1.devops.staging.corp.mongodb.com
-    api_server: https://api.staging.corp.mongodb.com
+    values: image.tag=git-${DRONE_COMMIT_SHA:0:7},image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/devops/${DRONE_REPO_NAME},ingress.enabled=true,ingress.hosts[0]=yuzhou-test-app-1.devops.test.corp.mongodb.com
+    api_server: https://api.test.corp.mongodb.com
     kubernetes_token:
-      from_secret: staging_kubernetes_token
+      from_secret: test_kubernetes_token
   when:
     event:
     - push
